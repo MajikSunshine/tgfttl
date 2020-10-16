@@ -381,7 +381,7 @@ function targetless.appendiups()
     --HUD.missiontimerframe.size="QUARTER"
     --HUD.targetframe.size="QUARTER"
 
-    iup.Append(iup.GetParent(HUD.targetframe), iup.hbox{iup.fill{size="5"}})
+    iup.Append(iup.GetParent(HUD.targetframe), iup.hbox{iup.fill{size="QUARTER"}})
 
     targetless.Controller:generatetotals()
     targetless.var.iuplists = iup.vbox {}
@@ -419,11 +419,9 @@ function targetless.appendiups()
 
     local padding = 0
     local xres = gkinterface.GetXResolution()
-	print(xres)
     local yres = gkinterface.GetYResolution()
-	print (yres)
-    local threequarter = xres*0.075
-    local quarter = xres*0.025
+    local threequarter = xres*0.75
+    local quarter = xres*0.25
     if HUD.Centered then
         local usex = yres*(4/3)
         if usex < xres then
@@ -438,8 +436,8 @@ function targetless.appendiups()
         iup.hbox{
             iup.hbox{iup.fill{size=padding/2,},},
             iup.vbox{
-                iup.hbox{iup.fill{size=20,},},
-                iup.fill{size="%1",},
+                iup.hbox{iup.fill{size=threequarter,},},
+                iup.fill{size="%22",},
                 iup.hbox{
                     iup.fill{size=10},
                     hudinfo,
@@ -465,19 +463,14 @@ function targetless.appendiups()
                         },
                     },
                 },
-				iup.label { title="textextextext", size="10"},
-                targetless.var.selfship,--THESE ARE THE TARGETLESS DISPLAY SETTINGS
+                targetless.var.selfship,
                 targetless.Controller.totals.iup,
                 targetless.var.iuplists,
-                iup.hbox{iup.fill{size=3,},},
-                expand="NO",
-                margin="x95",
-                gap="2",
-				alignment="ACENTER",
+                iup.hbox{iup.fill{size=quarter,},},
+                expand="VERTICAL",
+                margin="4x4",
+                gap="4",
             },
-		alignment="ATOP",
-		margin="154x",
-		expand="YES",
         },
     }
 

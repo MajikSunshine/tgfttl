@@ -142,7 +142,7 @@ function targetless.Ship:new(id)
             local iupbox = iup.vbox{
                 shieldbar,
                 iupbar,
-                iup.fill{ size=10},
+                iup.fill{ size=4},
             }
             return iupbox
         elseif(tag == "<healthtext>") then

@@ -1,7 +1,7 @@
 targetless.var = {}
 targetless.var.timer = Timer()
 targetless.var.version = "1.7.19"
-targetless.var.tgfttlversion = "1.3.3"
+targetless.var.tgfttlversion = "1.3.3.1"
 targetless.var.modeconvert = {"none", "PvP", "Cap", "Bomb", "All", "Ore", "Guard", "StTurret"}
 targetless.var.modeoption = {"ON", "ON", "ON", "ON", "ON", "ON", "ON", "ON"}
 targetless.var.state = false

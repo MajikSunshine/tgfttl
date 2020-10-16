@@ -32,7 +32,6 @@ function targetless.Controller:switch()
       modeswitched=true
     end
   end
-
     local statuscolor = "155 155 155"
     if(self.fstatus == 2) then statuscolor = "155 32 32"
     elseif(self.fstatus == 1) then statuscolor = "32 155 32"
@@ -57,18 +56,82 @@ function targetless.Controller:switch()
     if(self.mode == "PvP") then
         self.totals.pvplabel.fgcolor = "255 255 255"
         self.totals.pvp.fgcolor = activestatuscolor
-    elseif(self.mode == "Cap") then
+    elseif(self.mode == "Cap") or (self.mode == "Bomb") or (self.mode == "All") then
         self.totals.pvelabel.fgcolor = "255 255 255"
         self.totals.pveblabel.fgcolor ="255 255 255"
-        self.totals.cap.fgcolor = activestatuscolor
-    elseif(self.mode == "Bomb") then
+            if(self.mode == "Cap") then
+                self.totals.cap.fgcolor = activestatuscolor
+            elseif (self.mode == "Bomb") then
+                self.totals.bomb.fgcolor = activestatuscolor
+            elseif(self.mode == "All") then
+                self.totals.all.fgcolor = activestatuscolor
+            end
+    elseif(self.mode == "Ore") then
+        self.totals.orelabel.fgcolor = "255 255 255"
+        self.totals.roids.fgcolor = activestatuscolor
+    elseif(self.mode == "Guard") then
+      self.totals.guardlabel.fgcolor = "255 255 255"
+      self.totals.guard.fgcolor = activestatuscolor
+    elseif(self.mode == "StTurret") then
+      self.totals.stturretlabel.fgcolor = "255 255 255"
+      self.totals.stturret.fgcolor = activestatuscolor
+    end
+    self.currentbuffer.mode = self.mode
+    self.rebuildbuffer.mode = self.mode
+    self:update()
+end
+
+function targetless.Controller:switchback()
+    -- only allow this function if targetless state is enabled/started
+    if not targetless.var.state then return end
+  local modeswitched = false
+  local modenumber = 0
+  for x = 1, 8 do
+    if targetless.var.modeconvert[x]==self.mode then
+      modenumber=x
+    end
+  end
+  while not modeswitched do
+    modenumber=modenumber-1
+    if modenumber < 1 then
+      modenumber = 8
+    end
+    if targetless.var.modeoption[modenumber] == "ON" then
+      self.mode=targetless.var.modeconvert[modenumber]
+      modeswitched=true
+    end
+  end
+
+    local statuscolor = "155 155 155"
+    if(self.fstatus == 2) then statuscolor = "155 32 32"
+    elseif(self.fstatus == 1) then statuscolor = "32 155 32"
+    end
+    local activestatuscolor = "255 255 255"
+    if(self.fstatus == 2) then activestatuscolor = "255 64 64"
+    elseif(self.fstatus == 1) then activestatuscolor = "64 255 64"
+    end
+    self.totals.pvplabel.fgcolor = "155 155 155"
+    self.totals.pvelabel.fgcolor = "155 155 155"
+    self.totals.pveblabel.fgcolor ="155 155 155"
+    self.totals.orelabel.fgcolor = "155 155 155"
+    self.totals.pvp.fgcolor = statuscolor
+    self.totals.cap.fgcolor = statuscolor
+    self.totals.bomb.fgcolor = statuscolor
+    self.totals.all.fgcolor = statuscolor
+    self.totals.roids.fgcolor = statuscolor
+    if(self.mode == "PvP") then
+        self.totals.pvplabel.fgcolor = "255 255 255"
+        self.totals.pvp.fgcolor = activestatuscolor
+    elseif(self.mode == "Cap") or (self.mode == "Bomb") or (self.mode == "All") then
         self.totals.pvelabel.fgcolor = "255 255 255"
         self.totals.pveblabel.fgcolor ="255 255 255"
-        self.totals.bomb.fgcolor = activestatuscolor
-    elseif(self.mode == "All") then
-        self.totals.pvelabel.fgcolor = "255 255 255"
-        self.totals.pveblabel.fgcolor ="255 255 255"
-        self.totals.all.fgcolor = activestatuscolor
+            if(self.mode == "Cap") then
+                self.totals.cap.fgcolor = activestatuscolor
+            elseif (self.mode == "Bomb") then
+                self.totals.bomb.fgcolor = activestatuscolor
+            elseif(self.mode == "All") then
+                self.totals.all.fgcolor = activestatuscolor
+            end
     elseif(self.mode == "Ore") then
         self.totals.orelabel.fgcolor = "255 255 255"
         self.totals.roids.fgcolor = activestatuscolor

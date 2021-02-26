@@ -166,9 +166,13 @@ function targetless.addroid()
         end
 
 function targetless.unroid()
+    local needtoswitchback = false
     -- unroid freezes up really bad if the ore-list is open during operation
     -- if current list is roidlist do an lsswitch before running unroid
-    if targetless.Controller.mode == "Ore" then targetless.Controller:switch() end
+    if targetless.Controller.mode == "Ore" then
+        targetless.Controller:switch()
+        needtoswitchback = true
+    end
 
     local roids = targetless.RoidList:ids()
     local objecttype = targetless.var.roidtype;
@@ -202,7 +206,7 @@ function targetless.unroid()
                     if(distance <= nearestdistance) then
                         nearestdistance = distance
                         nearestid = tid
-end
+                    end
                 end
             end
         end
@@ -221,6 +225,7 @@ end
 
         radar.SetRadarSelection(GetPlayerNodeID(GetCharacterID()), GetPrimaryShipIDOfPlayer(GetCharacterID()))
     end
+    if needtoswitchback == true then targetless.Controller:switchback() end
 end
 
 function targetless.scanroidtype()
@@ -333,7 +338,7 @@ function targetless.targetchange()
 end
 
 function targetless.printinfo()
-  print("tgfttl version " .. targetless.var.tgfttlversion .. " Based on Targetless " .. targetless.var.version .. " loaded...")
+  print("\127006600TGFT\127FFFFFFtl v" .. targetless.var.tgfttlversion .. " Based on Targetless " .. targetless.var.version .. " loaded...")
 end
 
 function targetless.usercmd(cmd)

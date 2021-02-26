@@ -16,9 +16,10 @@ targetless.ui.options.element.showpvp = iup.stationtoggle{title="Display PvP lis
 targetless.ui.options.element.showpve = iup.stationtoggle{title="Display PvE list on HUD", value=targetless.var.huddisplay.showpve}
 targetless.ui.options.element.showcaps = iup.stationtoggle{title="Include capship list", value=targetless.var.huddisplay.showcaps}
 targetless.ui.options.element.showbomb = iup.stationtoggle{title="Include bomber list", value=targetless.var.huddisplay.showbomb}
+targetless.ui.options.element.showguard = iup.stationtoggle{title="Include guard list on HUD", value=targetless.var.huddisplay.showguard}
+targetless.ui.options.element.showturret = iup.stationtoggle{title="Include turret list on HUD", value=targetless.var.huddisplay.showturret}
 targetless.ui.options.element.showships = iup.stationtoggle{title="Include all ships list", value=targetless.var.huddisplay.showships}
 targetless.ui.options.element.showore = iup.stationtoggle{title="Display Ore list on HUD", value=targetless.var.huddisplay.showore}
-
 targetless.ui.options.element.slist = iup.list { "distance", "health", "faction"; dropdown="YES" }
 targetless.ui.options.element.flist = iup.list { "smile","wheel","bar"; dropdown="YES" }
 targetless.ui.options.element.basefontsize = iup.text { value = "" .. targetless.var.basefontsize, size = "100x" }
@@ -240,6 +241,8 @@ targetless.ui.options.lists.tab = iup.vbox{
             targetless.ui.options.element.showcaps,
             targetless.ui.options.element.showbomb,
             targetless.ui.options.element.showships,
+            targetless.ui.options.element.showguard,
+            targetless.ui.options.element.showturret,
             margin="20x0",
         },
         targetless.ui.options.element.showore,
@@ -406,17 +409,23 @@ function targetless.ui.options.main:OnHide()
     targetless.var.huddisplay.showships = targetless.ui.options.element.showships.value
     targetless.var.modeoption[5] = targetless.var.huddisplay.showships --"All"
     if targetless.var.huddisplay.showpve == "OFF" then
-      for x = 3, 5 do
+      for x = 3, 7 do
         targetless.var.modeoption[x] = "OFF"
       end
     end
+	targetless.var.huddisplay.showguard = targetless.ui.options.element.showguard.value
+	targetless.var.modeoption[8] = targetless.var.huddisplay.showguard
+	targetless.var.huddisplay.showturret = targetless.ui.options.element.showturret.value
+	targetless.var.modeoption[8] = targetless.var.huddisplay.showturret
     targetless.var.huddisplay.showore = targetless.ui.options.element.showore.value
-    targetless.var.modeoption[6] = targetless.var.huddisplay.showore
+    targetless.var.modeoption[8] = targetless.var.huddisplay.showore
     gkini.WriteString("targetless", "showpvp", ""..targetless.var.huddisplay.showpvp)
     gkini.WriteString("targetless", "showpve", ""..targetless.var.huddisplay.showpve)
     gkini.WriteString("targetless", "showcaps", ""..targetless.var.huddisplay.showcaps)
     gkini.WriteString("targetless", "showbomb", ""..targetless.var.huddisplay.showbomb)
     gkini.WriteString("targetless", "showships", ""..targetless.var.huddisplay.showships)
+	gkini.WriteString("targetless", "showguard", ""..targetless.var.huddisplay.showguard)
+	gkini.WriteString("targetless", "showturret", ""..targetless.var.huddisplay.showturret)
     gkini.WriteString("targetless", "showore", ""..targetless.var.huddisplay.showore)
     targetless.RoidList:load(GetCurrentSectorid())
     targetless.Controller:generatetotals()

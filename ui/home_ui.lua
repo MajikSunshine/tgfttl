@@ -3,10 +3,13 @@ targetless.ui.home = {}
 
 targetless.ui.home.logo = {}
 targetless.ui.home.logo.logo = iup.label{title = "logo.png",image=targetless.var.IMAGE_DIR.."logo.png"}
+targetless.ui.home.logo.logo2 = iup.label{title = "tgft.png",image=targetless.var.IMAGE_DIR.."tgft.png"}
 targetless.ui.home.logo.tab = iup.vbox{
     targetless.ui.home.logo.logo,
     iup.label{title="Created by Adrian (drazed@gmail.com) Zakrzewski\nhttp://targetless.com/"},
+	targetless.ui.home.logo.logo2,
 	margin="2x2",
+	alignment="ARIGHT",
 	tabtitle="Author",
 	hotkey=iup.K_u,
 }
@@ -66,7 +69,8 @@ targetless.ui.home.credit.desc = iup.label{title=
     "Scuba Steve 9.0 and his Pirates Toolkit for providing me with\n"..
     "wonderful sample code when I was learning lua.\n\n"..
     "Remen for bugfixing and support.\n\n"..
-    "The members of Coalition of Itan for helping test.\n\n"}
+    "The members of Coalition of Itan for helping test.\n\n"..
+    "\127006600TGFT\127FFFFFFtl by \127660066Rio..."}
 
 targetless.ui.home.credit.tab = iup.vbox{
     iup.hbox{

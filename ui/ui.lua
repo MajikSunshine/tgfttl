@@ -149,7 +149,7 @@ targetless.ui.tabs = iup.roottabtemplate{
     targetless.ui.ore.main,
     secondary = iup.hbox{
         iup.fill{},
-        iup.label{title="Version "..targetless.var.version, alignment="ACENTER", fgcolor=tabseltextcolor},
+        iup.label{title="\127006600TGFT\127FFFFFFtl v" .. targetless.var.tgfttlversion .. "\nBased on\nTargetless " .. targetless.var.version, alignment="ACENTER", fgcolor=tabseltextcolor},
         iup.fill{},
         margin="5x5"
     },

@@ -1,7 +1,7 @@
 targetless.var = {}
 targetless.var.timer = Timer()
 targetless.var.version = "1.7.19"
-targetless.var.tgfttlversion = "1.3.3.1"
+targetless.var.tgfttlversion = "1.3.3.2"
 targetless.var.modeconvert = {"none", "PvP", "Cap", "Bomb", "All", "Ore", "Guard", "StTurret"}
 targetless.var.modeoption = {"ON", "ON", "ON", "ON", "ON", "ON", "ON", "ON"}
 targetless.var.state = false
@@ -72,13 +72,17 @@ targetless.var.modeoption[4] = targetless.var.huddisplay.showbomb
 targetless.var.huddisplay.showships = gkini.ReadString("targetless", "showships", "ON")
 targetless.var.modeoption[5] = targetless.var.huddisplay.showships --"All"
 if targetless.var.huddisplay.showpve == "OFF" then
-  for x = 3, 5 do
+  for x = 3, 7 do
     targetless.var.modeoption[x] = "OFF"
   end
 end
 targetless.var.huddisplay.showore = gkini.ReadString("targetless", "showore", "ON")
+targetless.var.modeoption[8] = targetless.var.huddisplay.showore
+targetless.var.huddisplay.showguard = gkini.ReadString("targetless", "showguard", "ON")
+targetless.var.modeoption[6] = targetless.var.huddisplay.showguard 
+targetless.var.huddisplay.showturret = gkini.ReadString("targetless", "showturret", "ON")
+targetless.var.modeoption[7] = targetless.var.huddisplay.showturret 
 targetless.var.mycaps = {}
-targetless.var.modeoption[6] = targetless.var.huddisplay.showore
 targetless.var.joystickmodeport = gkini.ReadString("targetless", "joyportmode", "0")
 targetless.var.joysticktarport = gkini.ReadString("targetless", "joyporttarget", "0")
 targetless.var.joystickmodaxis = gkini.ReadString("targetless", "joymodaxislist", "5")

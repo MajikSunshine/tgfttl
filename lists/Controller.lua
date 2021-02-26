@@ -101,7 +101,6 @@ function targetless.Controller:switchback()
       modeswitched=true
     end
   end
-
     local statuscolor = "155 155 155"
     if(self.fstatus == 2) then statuscolor = "155 32 32"
     elseif(self.fstatus == 1) then statuscolor = "32 155 32"
@@ -110,15 +109,19 @@ function targetless.Controller:switchback()
     if(self.fstatus == 2) then activestatuscolor = "255 64 64"
     elseif(self.fstatus == 1) then activestatuscolor = "64 255 64"
     end
-    self.totals.pvplabel.fgcolor = "155 155 155"
-    self.totals.pvelabel.fgcolor = "155 155 155"
-    self.totals.pveblabel.fgcolor ="155 155 155"
+    self.totals.pvplabel.fgcolor = FactionColor_RGB[GetPlayerFaction()]
+    self.totals.pvelabel.fgcolor = FactionColor_RGB[GetPlayerFaction()]
+    self.totals.pveblabel.fgcolor =FactionColor_RGB[GetPlayerFaction()]
     self.totals.orelabel.fgcolor = "155 155 155"
+    self.totals.guardlabel.fgcolor = FactionColor_RGB[GetPlayerFaction()]
+    self.totals.stturretlabel.fgcolor = FactionColor_RGB[GetPlayerFaction()]
     self.totals.pvp.fgcolor = statuscolor
     self.totals.cap.fgcolor = statuscolor
     self.totals.bomb.fgcolor = statuscolor
     self.totals.all.fgcolor = statuscolor
     self.totals.roids.fgcolor = statuscolor
+    self.totals.guard.fgcolor = statuscolor
+    self.totals.stturret.fgcolor = statuscolor
     if(self.mode == "PvP") then
         self.totals.pvplabel.fgcolor = "255 255 255"
         self.totals.pvp.fgcolor = activestatuscolor
@@ -148,7 +151,7 @@ function targetless.Controller:switchback()
 end
 
 function targetless.Controller:joyswitch()
-  if joystick.GetJoystickSingleAxisRawValue(targetless.var.joystickmodeport-1,targetless.var.joystickmodaxis) < 0 then
+--[[  if joystick.GetJoystickSingleAxisRawValue(targetless.var.joystickmodeport-1,targetless.var.joystickmodaxis) < 0 then
       targetless.Controller:switch()
       targetless.Controller:switch()
       targetless.Controller:switch()
@@ -158,7 +161,7 @@ function targetless.Controller:joyswitch()
       targetless.Controller:switch()
   elseif joystick.GetJoystickSingleAxisRawValue(targetless.var.joystickmodeport-1,targetless.var.joystickmodaxis) > 0 then
       targetless.Controller:switch()
-    end
+    end--]]
 end
 -- this does not save the sort order, only temporarily cycles it.
 function targetless.Controller:sort()
